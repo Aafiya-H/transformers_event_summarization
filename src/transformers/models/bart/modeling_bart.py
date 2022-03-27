@@ -1253,7 +1253,7 @@ class BartModel(BartPretrainedModel):
         
         event_generalized_embeddings = self.generalized_pooling(event_encoder_embeddings)
         event_generalized_embeddings = torch.cat([event_generalized_embeddings,text_encoder_embeddings],dim=1)
-        attention_mask = torch.cat([torch.ones( (event_generalized_embeddings.size()[0], 4), device = self.device ), attention_mask ], dim = 1)
+        attention_mask = torch.cat([torch.ones( (event_generalized_embeddings.size()[0], 4), device = self.device ), text_attention_mask ], dim = 1)
         # decoder outputs consists of (dec_features, past_key_value, dec_hidden, dec_attn)
         decoder_outputs = self.decoder(
             input_ids=decoder_input_ids,
